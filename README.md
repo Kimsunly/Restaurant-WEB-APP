@@ -1,58 +1,146 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Restaurant Web App (Laravel 13)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Restaurant website and admin panel built with Laravel 13 using the Feane theme.
 
-## About Laravel
+## Assignment Scope Covered
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Feane theme integration across public pages.
+2. Menu CRUD in admin panel.
+3. Homepage slideshow CRUD in admin panel (text-based slides: title, subtitle, button text, order, active status).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Public Website
 
-## Learning Laravel
+- Home page with hero carousel content.
+- Menu page with category filtering.
+- About page.
+- Book Table page.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Admin Panel
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Dashboard summary.
+- Menu management:
+	- Create
+	- List
+	- Edit
+	- Delete
+- Slides management:
+	- Create
+	- List
+	- Edit
+	- Delete
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Tech Stack
 
-## Agentic Development
+- PHP 8.3+
+- Laravel 13
+- MySQL
+- Laravel Breeze (authentication)
+- Vite
+- Bootstrap 4 theme assets (Feane)
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Project Routes
+
+### Public
+
+- `/` Home
+- `/menu` Menu
+- `/about` About
+- `/book` Book Table
+
+### Admin (Authenticated)
+
+- `/admin` Dashboard
+- `/admin/menus` Menu CRUD
+- `/admin/slides` Slides CRUD
+
+## Setup Instructions
+
+1. Clone repository.
+
+2. Install PHP dependencies:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+3. Install frontend dependencies:
 
-## Contributing
+```bash
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Create environment file:
 
-## Code of Conduct
+```bash
+copy .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. Update database credentials in `.env`.
 
-## Security Vulnerabilities
+6. Generate app key:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan key:generate
+```
+
+7. Run migrations:
+
+```bash
+php artisan migrate
+```
+
+8. Create storage symlink (for menu images):
+
+```bash
+php artisan storage:link
+```
+
+9. Build assets:
+
+```bash
+npm run build
+```
+
+10. Start development server:
+
+```bash
+php artisan serve
+```
+
+## Development Commands
+
+- Start Vite dev server:
+
+```bash
+npm run dev
+```
+
+- Run tests:
+
+```bash
+php artisan test
+```
+
+## Database Notes
+
+- `menus` table supports menu items and uploaded images.
+- `slides` table is text-based for carousel content.
+- Migration `2026_04_19_000002_drop_image_from_slides_table.php` removes the old slide image field.
+
+## Demo Checklist
+
+1. Show public pages: Home, Menu, About, Book.
+2. Login to admin.
+3. Perform Menu CRUD (create, edit, delete).
+4. Perform Slides CRUD (create, edit, delete).
+5. Refresh homepage and verify carousel text updates.
+
+## Theme Credit
+
+- Feane template: https://themewagon.com/themes/free-bootstrap-4-html5-restaurant-website-template-feane/
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is for educational/assignment purposes.
