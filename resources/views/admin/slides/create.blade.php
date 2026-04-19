@@ -8,7 +8,7 @@
                 <div>
                     <span class="admin-chip">Homepage carousel</span>
                     <h2>Add New Slide</h2>
-                    <p>Add a hero image and message that will appear on the public homepage slider.</p>
+                    <p>Add a hero message and button text that will appear on the public homepage slider.</p>
                 </div>
                 <a href="{{ route('admin.slides.index') }}" class="admin-action-link secondary">← Back</a>
             </div>
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-8 mb-4 mb-lg-0">
                     <div class="admin-form-card p-4 p-lg-5">
-                        <form action="{{ route('admin.slides.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.slides.store') }}" method="POST">
                             @csrf
 
                             <div class="form-group">
@@ -56,16 +56,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group admin-upload-box">
-                                <label>Image *</label>
-                                <input type="file" name="image"
-                                    class="admin-file-input @error('image') is-invalid @enderror" accept="image/*">
-                                @error('image')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                                <div class="admin-upload-help">Use a wide, high-quality image for the homepage hero.</div>
-                            </div>
-
                             <div class="form-group custom-control custom-checkbox">
                                 <input type="checkbox" name="is_active" class="custom-control-input" id="is_active" checked>
                                 <label class="custom-control-label" for="is_active">Active (visible on home page)</label>
@@ -81,12 +71,12 @@
                         <span class="admin-chip mb-3">Tips</span>
                         <h4 style="color:#222831;">Carousel friendly</h4>
                         <p class="mt-3" style="color:#666666;">
-                            Use a wide image with strong contrast so the hero text remains readable over the dark Feane
-                            background.
+                            Keep the title short and the subtitle readable so the homepage carousel stays clean and close
+                            to the original Feane layout.
                         </p>
                         <div class="mt-4 p-3" style="background:#fffaf0; border-radius:18px; border:1px solid #f0e2bf;">
                             <strong style="color:#222831;">Recommended order</strong>
-                            <div class="admin-field-help mt-2">Place the strongest hero image first, then continue with
+                            <div class="admin-field-help mt-2">Place the strongest hero message first, then continue with
                                 secondary promotions.</div>
                         </div>
                     </div>

@@ -281,6 +281,26 @@
             box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
         }
 
+        .admin-image-preview-wrap {
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .admin-image-preview-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 170px;
+            padding: 18px;
+            text-align: center;
+            color: #8b7b56;
+            background: linear-gradient(180deg, #fffaf0 0%, #fffdf8 100%);
+            border: 1px dashed #f0d69a;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
         .admin-empty {
             text-align: center;
             padding: 44px 20px;

@@ -38,10 +38,10 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 pr-md-2">
                                     <div class="form-group admin-form-field mb-0">
                                         <label>Price *</label>
-                                        <input type="number" step="0.01" name="price"
+                                        <input type="number" step="0.01" min="0" inputmode="decimal" name="price"
                                             class="form-control @error('price') is-invalid @enderror"
                                             value="{{ old('price') }}">
                                         @error('price')
@@ -49,28 +49,37 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group admin-form-field">
-                                <label class="d-block">Category *</label>
-                                <select name="category"
-                                    class="form-control admin-select-field @error('category') is-invalid @enderror">
-                                    <option value="">-- Select Category --</option>
-                                    @foreach(['burger', 'pizza', 'pasta', 'fries'] as $cat)
-                                        <option value="{{ $cat }}" {{ old('category') === $cat ? 'selected' : '' }}>
-                                            {{ ucfirst($cat) }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('category')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="col-md-6 pl-md-2">
+                                    <div class="form-group admin-form-field mb-0">
+                                        <label class="d-block">Category *</label>
+                                        <select name="category"
+                                            class="form-control admin-select-field @error('category') is-invalid @enderror">
+                                            <option value="">-- Select Category --</option>
+                                            @foreach(['burger', 'pizza', 'pasta', 'fries'] as $cat)
+                                                <option value="{{ $cat }}" {{ old('category') === $cat ? 'selected' : '' }}>
+                                                    {{ ucfirst($cat) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('category')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group admin-upload-box admin-form-field">
                                 <label>Image</label>
                                 <input type="file" name="image"
-                                    class="admin-file-input @error('image') is-invalid @enderror" accept="image/*">
+                                    class="admin-file-input @error('image') is-invalid @enderror" accept="image/*"
+                                    id="menuImageInput">
+                                <div class="admin-image-preview-wrap mt-3">
+                                    <img id="menuImagePreview" class="admin-preview-image d-none"
+                                        alt="Selected menu image preview">
+                                    <div id="menuImagePlaceholder" class="admin-image-preview-placeholder">
+                                        Image preview will appear here after you choose a file.
+                                    </div>
+                                </div>
                                 @error('image')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
@@ -106,3 +115,38 @@
         </div>
     </section>
 @endsection
+
+@push('page-scripts')
+    <script>
+        (function () {
+            var input = document.getElementById('menuImageInput');
+            var preview = document.getElementById('menuImagePreview');
+            var placeholder = document.getElementById('menuImagePlaceholder');
+
+            if (!input || !preview || !placeholder) {
+                return;
+            }
+
+            input.addEventListener('change', function () {
+                var file = this.files && this.files[0];
+
+                if (!file) {
+                    preview.src = '';
+                    preview.classList.add('d-none');
+                    placeholder.classList.remove('d-none');
+                    return;
+                }
+
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+                    preview.src = event.target.result;
+                    preview.classList.remove('d-none');
+                    placeholder.classList.add('d-none');
+                };
+
+                reader.readAsDataURL(file);
+            });
+        })();
+    </script>
+@endpush

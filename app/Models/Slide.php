@@ -13,7 +13,6 @@ class Slide extends Model
         'title',
         'subtitle',
         'button_text',
-        'image',
         'sort_order',
         'is_active',
     ];
