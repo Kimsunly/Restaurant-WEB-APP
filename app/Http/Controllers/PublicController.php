@@ -14,7 +14,7 @@ class PublicController extends Controller
                     ->get();
 
         $featuredMenus = Menu::where('is_active', true)
-                            ->take(4)
+                            ->latest()
                             ->get();
 
         return view('public.home', compact('slides', 'featuredMenus'));

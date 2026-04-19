@@ -8,7 +8,7 @@
                 <div>
                     <span class="admin-chip">Homepage carousel</span>
                     <h2>Home Slides</h2>
-                    <p>Control the hero slider images, order, and button labels shown on the public homepage.</p>
+                    <p>Control the hero text, order, and button labels shown on the public homepage.</p>
                 </div>
                 <a href="{{ route('admin.slides.create') }}" class="admin-action-link primary">+ Add New Slide</a>
             </div>
@@ -18,7 +18,6 @@
                     <table class="table admin-table mb-0">
                         <thead>
                             <tr>
-                                <th>Image</th>
                                 <th>Title</th>
                                 <th>Subtitle</th>
                                 <th>Button Text</th>
@@ -30,17 +29,6 @@
                         <tbody>
                             @forelse($slides as $slide)
                                 <tr>
-                                    <td>
-                                        @if($slide->image)
-                                            <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}"
-                                                class="admin-thumb" style="width:84px; height:54px; border-radius:14px;">
-                                        @else
-                                            <div class="admin-thumb d-flex align-items-center justify-content-center"
-                                                style="width:84px; height:54px; border-radius:14px; background:#f6f1e7; color:#b28a29; font-weight:700;">
-                                                No image
-                                            </div>
-                                        @endif
-                                    </td>
                                     <td>
                                         <strong style="color:#222831;">{{ $slide->title }}</strong>
                                     </td>
@@ -74,7 +62,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7">
+                                    <td colspan="6">
                                         <div class="admin-empty">
                                             <h4 style="color:#222831;">No slides yet.</h4>
                                             <p class="mb-3">Add a slide so the homepage carousel has content to show.</p>

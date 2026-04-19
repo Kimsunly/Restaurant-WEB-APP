@@ -8,7 +8,7 @@
                 <div>
                     <span class="admin-chip">Homepage carousel</span>
                     <h2>Edit Slide</h2>
-                    <p>Update the image, text, and ordering for a homepage hero slide.</p>
+                    <p>Update the text and ordering for a homepage hero slide.</p>
                 </div>
                 <a href="{{ route('admin.slides.index') }}" class="admin-action-link secondary">← Back</a>
             </div>
@@ -16,8 +16,7 @@
             <div class="row">
                 <div class="col-lg-8 mb-4 mb-lg-0">
                     <div class="admin-form-card p-4 p-lg-5">
-                        <form action="{{ route('admin.slides.update', $slide) }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('admin.slides.update', $slide) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -55,22 +54,6 @@
                                         <small class="form-text text-muted">Lower numbers show first in the
                                             carousel.</small>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group admin-upload-box">
-                                @if($slide->image)
-                                    <label class="d-block">Current Image</label>
-                                    <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}"
-                                        class="admin-preview-image mb-3" style="max-width: 360px; max-height: 220px;">
-                                @endif
-                                <label>{{ $slide->image ? 'Replace Image' : 'Image *' }}</label>
-                                <input type="file" name="image"
-                                    class="admin-file-input @error('image') is-invalid @enderror" accept="image/*">
-                                @error('image')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                                <div class="admin-upload-help">Use a wide image with enough contrast for the slider overlay.
                                 </div>
                             </div>
 
